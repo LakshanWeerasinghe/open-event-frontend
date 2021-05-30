@@ -181,13 +181,13 @@ export default Component.extend(FormMixin, EventWizardMixin, {
     };
     $.fn.form.settings.rules.checkValidTimeDifferenceSellingStart = () => {
       return !($('[name=ticket_start_date]')[0].value === $('[name=end_date]')[0].value &&
-        moment($('[name=end_time]')[0].value, 'HH:mm')
-        .isSameOrAfter(moment($('[name=ticket_start_time]')[0].value, 'HH:mm')));
+      moment($('[name=ticket_start_time]')[0].value, 'HH:mm'))
+        .isSameOrAfter(moment($('[name=end_time]')[0].value, 'HH:mm'));
     };
     $.fn.form.settings.rules.checkValidTimeDifferenceSellingEnd = () => {
       return !($('[name=ticket_end_date]')[0].value === $('[name=end_date]')[0].value &&
-        moment($('[name=end_time]')[0].value, 'HH:mm')
-          .isSameOrAfter(moment($('[name=ticket_end_time]')[0].value, 'HH:mm')));
+        moment($('[name=ticket_end_time]')[0].value, 'HH:mm'))
+          .isSameOrAfter(moment($('[name=end_time]')[0].value, 'HH:mm'));
     };
 
     const validationRules = {
