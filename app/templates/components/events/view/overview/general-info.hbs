@@ -1,3 +1,13 @@
+<script>
+  function makeUnderlined(element) {
+    element.style.textDecoration = 'underline';
+  }
+
+  function makeNotUnderlined(element) {
+    element.style.textDecoration = 'none';
+  }
+</script>
+
 <div class="content">
   <div class="header weight-300">{{t 'Highlight'}}</div>
 </div>
@@ -30,7 +40,10 @@
           {{#if this.data.event.locationName}}
             {{this.data.event.locationName}}
           {{else}}
-            <a href="{{href-to 'events.view.edit.basic-details'}}">{{t 'Click to add location.'}}</a>
+            <a href="{{href-to 'events.view.edit.basic-details'}}" 
+            onmouseover="makeUnderlined(this)" onmouseout="makeNotUnderlined(this)">
+              {{t 'Click to add location.'}}
+              </a>
           {{/if}}
         </td>
       </tr>
@@ -47,7 +60,10 @@
         <td>
           {{#if this.data.socialLinks}}
             {{#each this.data.socialLinks as |socialLink index|~}}
-              {{if (not-eq index 0) ','}} <a href="{{socialLink.link}}" target="_blank" rel="noopener noreferrer">{{socialLink.displayName}}</a>
+              {{if (not-eq index 0) ','}} <a href="{{socialLink.link}}" target="_blank" rel="noopener noreferrer"
+              onmouseover="makeUnderlined(this)" onmouseout="makeNotUnderlined(this)">
+                {{socialLink.displayName}}
+                </a>
             {{~/each}}
           {{else}}
             {{t 'No social links present. '}} <a href="{{href-to 'events.view.edit.other-details'}}#social-links">{{t 'Click here to add'}}</a>

@@ -2,24 +2,24 @@
   <div class="header weight-300">{{t 'Ticket Sale'}}</div>
 </div>
 <div class="content">
-  <h4 class="ui header">{{t 'Summary'}}</h4>
+  <div class="ui header">{{t 'Summary'}}</div>
   <table class="ui very basic compact unstackable table">
     <tbody>
       <tr>
-        <td>{{t 'Total tickets sold'}}</td>
+        <td><strong>{{t 'Total tickets sold'}}</strong></td>
         <td>{{tickets}}</td>
       </tr>
       <tr>
-        <td>{{t 'No. of orders'}}</td>
+        <td><strong>{{t 'No. of orders'}}</strong></td>
         <td>{{this.orders}}</td>
       </tr>
       <tr>
-        <td>{{t 'Sales (amount)'}}</td>
+        <td><strong>{{t 'Sales (amount)'}}</strong></td>
         <td><CurrencyAmount @currency={{this.data.event.paymentCurrency}} @amount={{this.sales}}/></td>
       </tr>
     </tbody>
   </table>
-  <h4 class="ui header">{{t 'Details'}}</h4>
+  <div class="ui header">{{t 'Details'}}</div>
   <table class="ui very basic compact unstackable table">
     <thead>
       <tr>

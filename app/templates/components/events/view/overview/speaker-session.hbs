@@ -2,11 +2,11 @@
   <div class="header weight-300">{{t 'Sessions and Speakers'}}</div>
 </div>
 <div class="content">
-  <h4 class="ui header">{{t 'Summary'}}</h4>
+  <div class="ui header">{{t 'Summary'}}</div>
   <table class="ui very basic compact unstackable table">
     <tbody>
       <tr>
-        <td>{{t 'Session Types'}} </td>
+        <td><strong>{{t 'Session Types'}}</strong> </td>
         <td>
           {{#if this.data.sessionTypes}}
             {{#each this.data.sessionTypes as |sessionType index|~}}
@@ -18,7 +18,7 @@
         </td>
       </tr>
       <tr>
-        <td>{{t 'Tracks'}}</td>
+        <td><strong>{{t 'Tracks'}}</strong></td>
         <td>
           {{#if this.data.tracks}}
             {{#each this.data.tracks as |tracks index|~}}
@@ -30,7 +30,7 @@
         </td>
       </tr>
       <tr>
-        <td>{{t 'Microlocations'}}</td>
+        <td><strong>{{t 'Microlocations'}}</strong></td>
         <td>
           {{#if this.data.microlocations}}
             {{#each this.data.microlocations as |microlocations index|~}}
@@ -42,7 +42,7 @@
         </td>
       </tr>
       <tr>
-        <td>{{t 'Call for Speakers'}} </td>
+        <td><strong>{{t 'Call for Speakers'}}</strong> </td>
         <td>
           {{#if this.data.speakersCall}}
             {{t 'Start Time'}}: {{general-date this.data.speakersCall.startsAt 'date-time-tz-long' tz=this.data.event.timezone}}
@@ -54,7 +54,7 @@
         </td>
       </tr>
       <tr>
-        <td>{{t 'No. of Speakers'}}</td>
+        <td><strong>{{t 'No. of Speakers'}}</strong></td>
         <td>
           {{#if this.data.event.isSessionsSpeakersEnabled}}
             {{this.data.statistics.speakers.total}}
@@ -64,7 +64,7 @@
         </td>
       </tr>
       <tr>
-        <td>{{t 'No. of Sessions'}}</td>
+        <td><strong>{{t 'No. of Sessions'}}</strong></td>
         <td>
           {{#if this.data.event.isSessionsSpeakersEnabled}}
             {{this.data.statistics.sessions}}
@@ -75,7 +75,7 @@
       </tr>
     </tbody>
   </table>
-  <h4 class="ui header">{{t 'Details'}}</h4>
+  <div class="ui header">{{t 'Details'}}</div>
   <table class="ui very basic compact unstackable table">
     <thead>
       <tr>
