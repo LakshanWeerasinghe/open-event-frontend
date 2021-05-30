@@ -17,6 +17,10 @@ export default Component.extend(EventWizardMixin, FormMixin, {
     $.fn.form.settings.rules.checkStartDateCFS = () => {
       return !(moment($('.ui.form').form('get value', 'start_date')).isAfter(this.data.event.startsAtDate));
     };
+    $.fn.form.settings.rules.checkEndDateAfterStartDateCFS = () => {
+      return !(moment($('.ui.form').form('get value', 'end_date'))
+      .isSameOrAfter(moment($('.ui.form').form('get value', 'start_date'))));
+    };
     $.fn.form.settings.rules.checkEndDateCFS = () => {
       return !(moment($('.ui.form').form('get value', 'end_date')).isAfter(this.data.event.startsAtDate));
     };
@@ -26,12 +30,18 @@ export default Component.extend(EventWizardMixin, FormMixin, {
     $.fn.form.settings.rules.checkSoftEndDateBeforeCfsEnd = () => {
       return (moment($('.ui.form').form('get value', 'soft_end_date')).isSameOrBefore(this.data.speakersCall.endsAtDate));
     };
+    $.fn.form.settings.rules.checkStartDateCannotBePastdate = () => {
+      let today = moment(new Date());
+      return moment(today, 'MM-DD-YYYY').diff(moment($('.ui.form').form('get value', 'start_date'), 'MM-DD-YYYY'), 'days') <= 0;
+    }
     $.fn.form.settings.rules.checkSoftEndTimeAfterCfsStart = () => {
       return (moment($('.ui.form').form('get value', 'soft_end_date') + ' ' + $('.ui.form').form('get value', 'soft_end_time')).isAfter(this.data.speakersCall.startsAt));
     };
     $.fn.form.settings.rules.checkSoftEndTimeBeforeCfsEnd = () => {
       return (moment($('.ui.form').form('get value', 'soft_end_date') + ' ' + $('.ui.form').form('get value', 'soft_end_time')).isBefore(this.data.speakersCall.endsAt));
     };
+   
+
     return {
       inline : true,
       delay  : false,
@@ -71,6 +81,11 @@ export default Component.extend(EventWizardMixin, FormMixin, {
               type   : 'empty',
               prompt : this.l10n.t('Please tell us when your event starts')
             },
+            {
+              type  : 'checkStartDateCannotBePastdate',
+              prompt: this.l10n.t('CFS start date cannot be a past date')
+            },
+
             {
               type   : 'checkStartDateCFS',
               prompt : this.l10n.t('CFS start time should be before than event start time')
