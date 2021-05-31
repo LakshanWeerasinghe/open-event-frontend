@@ -153,6 +153,30 @@
   </div>
 
   <div class="my-card">
+    <div class="ui centered grid">
+      <div class="column">
+        <div class="ui {{if this.hasCodeOfConduct 'basic'}} basic">
+          <div class="left aligned text">
+            <div class="field">
+              <div class="ui slider checkbox"> 
+                <Input @type="checkbox"  class ="toggle" @checked={{this.hasCodeOfConduct}} />
+                <label class="weight-300" style="font-size: large">
+                  {{if this.hasCodeOfConduct (t 'Turn off') (t 'Turn on')}}
+                  {{t 'Code of Conduct'}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{#if this.hasCodeOfConduct}}
+  <div class="my-card">
+    <h3 class="ui dividing header weight-300">
+        {{t 'Code of Conduct'}}
+      </h3> 
     {{!-- <div class="field">
       <div class="ui slider checkbox">
         <Input
@@ -163,18 +187,18 @@
         <label for="add_code_of_conduct">{{t "Add Code of Conduct"}}</label>
       </div>
     </div> --}}
-    <div {{action "toggleColapse"}}>
+    {{!-- <div {{action "toggleColapse"}}>
       <h3 class="ui dividing header weight-300" style="background-color: #ffffff; display: flex; justify-content: space-between;">
         {{t 'Code of Conduct'}}
           <i class="{{if this.collapsed 'caret up icon' 'caret down icon'}}" style="background-color: #ffffff;"></i>
       </h3>
-    </div>
+    </div> --}}
     {{!-- <button type="button" class="collapsible" {{action "toggleColapse"}}>{{t
         "Add Code of Conduct"
       }}</button> --}}
-    <div class="collapsible-content {{this.collapseContent}}" style="padding-left: 0px; padding-right: 0px">
+    {{!-- <div class="collapsible-content {{this.collapseContent}}" style="padding-left: 0px; padding-right: 0px"> --}}
 
-      {{#if this.hasCodeOfConduct}}
+      {{!-- {{#if this.hasCodeOfConduct}} --}}
         <div class="field">
           <label for="code_of_conduct">{{t "Code of Conduct"}}</label>
           <Widgets::Forms::RichTextEditor
@@ -182,9 +206,10 @@
             @value={{this.data.event.codeOfConduct}}
           />
         </div>
-      {{/if}}
-    </div>
+      {{!-- {{/if}} --}}
+    {{!-- </div> --}}
   </div>
+  {{/if}}
 
   <div class="my-card">
      <h3 class="ui dividing header weight-300">

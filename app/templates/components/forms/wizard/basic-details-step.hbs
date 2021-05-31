@@ -549,12 +549,36 @@
   </div>
 
   <div class="my-card">
-    <div {{action "toggleColapse"}}>
+    <div class="ui centered grid">
+      <div class="column">
+        <div class="ui {{if this.data.event.hasOwnerInfo 'basic'}} basic">
+          <div class="left aligned text">
+            <div class="field">
+              <div class="ui slider checkbox"> 
+                <Input @type="checkbox"  class ="toggle" @checked={{this.data.event.hasOwnerInfo}} />
+                <label class="weight-300" style="font-size: large">
+                  {{if this.data.event.hasOwnerInfo (t 'Turn off') (t 'Turn on')}}
+                  {{t 'Organizer or Group Information'}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{#if this.data.event.hasOwnerInfo}}
+  <div class="my-card">
+      <h3 class="ui dividing header weight-300">
+        {{t 'Organizer or Group Information'}}
+      </h3> 
+    {{!-- <div {{action "toggleColapse"}}>
   <h3 class="ui dividing header weight-300" style="background-color: #ffffff; display: flex; justify-content: space-between;">
         {{t 'Organizer or Group Information'}}
           <i class="{{if this.collapsed 'caret up icon' 'caret down icon'}}" style="background-color: #ffffff;"></i>
       </h3>
-    </div>
+    </div> --}}
 
   {{!-- <button
       type="button"
@@ -562,8 +586,8 @@
       {{action "toggleColapse"}}
     >{{t "Add Organizer or Group Information"}}</button> --}}
 
-    <div class="collapsible-content {{this.collapseContent}}" style="padding-left: 0px; padding-right: 0px">
-    <div class="collapsible-content {{this.collapseContent}}">
+    {{!-- <div class="collapsible-content {{this.collapseContent}}" style="padding-left: 0px; padding-right: 0px"> --}}
+    {{!-- <div class="collapsible-content {{this.collapseContent}}"> --}}
       <div class="field">
         <label for="owner_name">{{t "Organizer or Group Name"}}</label>
         <Input @type="text" @id="owner_name" @value={{this.data.event.ownerName}} />
@@ -574,10 +598,10 @@
           }}</label>
         <Widgets::Forms::RichTextEditor @id="owner_description" @value={{this.data.event.ownerDescription}} />
       </div>
-    </div>
-    </div>
+    {{!-- </div>
+    </div> --}}
   </div>
-
+  {{/if}}
   <div class="spacer-50"></div>
   {{!-- <div class="field">
   <i class="dropdown icon"></i>

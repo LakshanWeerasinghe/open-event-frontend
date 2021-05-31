@@ -21,34 +21,59 @@
   </div>
   
   <div class="my-card">
-    <div {{action "toggleColapse"}}>
-      <h3 class="ui dividing header weight-300" style="background-color: #ffffff; display: flex; justify-content: space-between;">
-        {{t 'Optional Form Fields'}}
-          <i class="{{if this.collapsed 'caret up icon' 'caret down icon'}}" style="background-color: #ffffff;"></i>
-      </h3>
-    </div>
-    <div class="collapsible-content {{this.collapseContent}}" style="padding-left: 0px; padding-right: 0px; overflow: visible">
-      <div class="ui two column stackable grid" style="padding-bottom: 0px;">
-        <div class="w-full column">
-          <Forms::Wizard::CustomForms::Table
-            @fields={{this.editableFields}}
-            @removeField={{action "removeField"}}
-            @updateField={{action (mut this.field)}} 
-          />
+    <div class="ui centered grid">
+      <div class="column">
+        <div class="ui {{if this.data.event.isTicketFormEnabled 'basic'}} basic">
+          <div class="left aligned text">
+            <div class="field">
+              <div class="ui slider checkbox"> 
+                <Input @type="checkbox"  class ="toggle" @checked={{this.data.event.isTicketFormEnabled}} />
+                <label class="weight-300" style="font-size: large">
+                  {{if this.data.event.isTicketFormEnabled (t 'Turn off') (t 'Turn on')}}
+                  {{t 'Optional Form Fields'}}
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="ui two column stackable grid" style="margin-top: 0px;">
-        <div class="w-full column" style="padding-top: 0px;">
-            <Forms::Wizard::CustomFormInput
-              @customForms={{this.data.customForms}}
-              @event={{this.data.event}}
-              @form="attendee"
-              @field={{this.field}}
-              @onSave={{action (mut this.field) null}} />
-        </div>  
       </div>
     </div>
   </div>
+
+  {{#if this.data.event.isTicketFormEnabled}}
+    <div class="my-card">
+      <h3 class="ui dividing header weight-300">
+        {{t 'Optional Form Fields'}}
+      </h3>
+      {{!-- <div {{action "toggleColapse"}}>
+        <h3 class="ui dividing header weight-300" style="background-color: #ffffff; display: flex; justify-content: space-between;">
+          {{t 'Optional Form Fields'}}
+            <i class="{{if this.collapsed 'caret up icon' 'caret down icon'}}" style="background-color: #ffffff;"></i>
+        </h3>
+      </div> --}}
+      {{!-- <div class="collapsible-content {{this.collapseContent}}" style="padding-left: 0px; padding-right: 0px; overflow: visible"> --}}
+        <div class="ui two column stackable grid" style="padding-bottom: 0px;">
+          <div class="w-full column">
+            <Forms::Wizard::CustomForms::Table
+              @fields={{this.editableFields}}
+              @removeField={{action "removeField"}}
+              @updateField={{action (mut this.field)}} 
+            />
+          </div>
+        </div>
+        <div class="ui two column stackable grid" style="margin-top: 0px;">
+          <div class="w-full column" style="padding-top: 0px;">
+              <Forms::Wizard::CustomFormInput
+                @customForms={{this.data.customForms}}
+                @event={{this.data.event}}
+                @form="attendee"
+                @field={{this.field}}
+                @onSave={{action (mut this.field) null}} />
+          </div>  
+        </div>
+      {{!-- </div> --}}
+    </div>
+  {{/if}}
   <div class="spacer-50"></div>
 </form>
 

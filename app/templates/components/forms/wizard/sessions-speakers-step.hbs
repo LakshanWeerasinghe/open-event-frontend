@@ -312,7 +312,11 @@
             @id="add_call_for_speaker" 
             {{action "resetCFS" on="change"}}
             />
-          <label for="add_call_for_speaker">{{t 'Enable Call For Speakers'}}</label>
+          {{!-- <label for="add_call_for_speaker">{{t 'Enable Call For Speakers'}}</label> --}}
+          <label class="weight-300" style="font-size: large">
+            {{if this.hasCallForSpeaker (t 'Turn off') (t 'Turn on')}}
+            {{t 'Call For Speakers'}}
+          </label>
         </div>
       </div>
     </div>
