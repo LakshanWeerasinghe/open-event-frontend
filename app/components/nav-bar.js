@@ -67,25 +67,25 @@ function startDictationSmall() {
 
   if (window.hasOwnProperty('webkitSpeechRecognition')) {
 
-    //alert("Hello world");
+    // alert("Hello world");
 
-    var recognition = new webkitSpeechRecognition();
+    const recognition = new webkitSpeechRecognition();
 
     recognition.continuous = false;
     recognition.interimResults = false;
 
-    recognition.lang = "en-US";
+    recognition.lang = 'en-US';
     recognition.start();
 
-    recognition.onresult = function (e) {
-      document.getElementById("mobileSearchBar").value
+    recognition.onresult = function(e) {
+      document.getElementById('mobileSearchBar').value
         = e.results[0][0].transcript;
       recognition.stop();
     };
 
-    recognition.onerror = function (e) {
+    recognition.onerror = function(e) {
       recognition.stop();
-    }
+    };
 
   }
 }

@@ -6,8 +6,8 @@ import { sortBy } from 'lodash-es';
 
 export default Component.extend(FormMixin, EventWizardMixin, {
 
-  collapseContent: 'collapsible-none',
-  collapsed: false,
+  collapseContent : 'collapsible-none',
+  collapsed       : false,
 
   fixedFields: computed('data.customForms.@each', function() {
     return this.data.customForms?.filter(field => field.isFixed);

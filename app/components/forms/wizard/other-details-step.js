@@ -13,8 +13,8 @@ export default Component.extend(FormMixin, EventWizardMixin, {
   currentTimezone: moment.tz.guess(),
   timezones,
 
-  collapseContent: 'collapsible-none',
-  collapsed: false,
+  collapseContent : 'collapsible-none',
+  collapsed       : false,
 
   deletedTickets: [],
 
